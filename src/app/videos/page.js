@@ -1,0 +1,1 @@
+import ResourceListing from "../../components/ResourceListing";export const metadata={title:"Videos"};export const dynamic="force-dynamic";export default function Page(){return <ResourceListing type="video" eyebrow="Watch and learn" title="Videos" description="Turn property insights into action through practical visual learning." basePath="/videos"/>}

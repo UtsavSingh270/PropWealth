@@ -1,0 +1,1 @@
+import ResourceListing from "../../components/ResourceListing";export const metadata={title:"Webinars"};export const dynamic="force-dynamic";export default function Page(){return <ResourceListing type="webinar" eyebrow="Live learning" title="Webinars" description="Knowledge-packed property investment sessions, replays and upcoming events." basePath="/webinars"/>}

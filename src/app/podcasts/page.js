@@ -1,0 +1,1 @@
+import ResourceListing from "../../components/ResourceListing";export const metadata={title:"Podcasts"};export const dynamic="force-dynamic";export default function Page(){return <ResourceListing type="podcast" eyebrow="Listen and learn" title="Podcasts" description="Expert conversations and debates designed to sharpen your investment strategy." basePath="/podcasts"/>}

@@ -1,0 +1,1 @@
+import ResourceDetail,{resourceMetadata} from "../../../components/ResourceDetail";export const dynamic="force-dynamic";export async function generateMetadata({params}){return resourceMetadata("video",(await params).slug)}export default async function Page({params}){return <ResourceDetail type="video" slug={(await params).slug} label="Videos" basePath="/videos"/>}

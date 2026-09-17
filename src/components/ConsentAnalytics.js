@@ -1,0 +1,2 @@
+"use client";import { useEffect } from "react";
+export default function ConsentAnalytics(){useEffect(()=>{const enable=()=>{try{const choice=JSON.parse(localStorage.getItem("propwealth-cookie-consent")||"{}").value;if(choice==="all")document.documentElement.dataset.analyticsConsent="granted"}catch{}};enable();window.addEventListener("consent-updated",enable);return()=>window.removeEventListener("consent-updated",enable)},[]);return null}

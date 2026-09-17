@@ -1,0 +1,3 @@
+import AboutTopicPage from "../../../../components/AboutTopicPage";
+export const metadata={title:"Portfolio Investors"};
+export default function Page(){return <AboutTopicPage eyebrow="Who we guide" title="Portfolio Investors" intro="Turn individual purchases into a coordinated property portfolio." heading="Make each acquisition serve the wider strategy." body={["Growing beyond one property introduces new questions about serviceability, equity, timing and diversification.","We help investors assess how the next purchase supports—not restricts—the acquisitions that may follow."]} points={["Portfolio and borrowing-position review","Acquisition sequencing","Market and asset diversification","Ongoing performance checkpoints"]}/>}

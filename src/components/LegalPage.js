@@ -1,0 +1,1 @@
+import PageHero from "./PageHero"; export default function LegalPage({title,children}){return <><PageHero eyebrow="Legal" title={title}>Important information about using this website and engaging with PropWealth.</PageHero><section className="section"><article className="shell card" style={{maxWidth:850}}>{children}</article></section></>}

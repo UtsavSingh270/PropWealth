@@ -1,0 +1,7 @@
+import { isAdmin } from "../../../../lib/adminAuth";import { connectDB } from "../../../../lib/mongodb";import Property from "../../../../models/Property";
+const denied=()=>Response.json({error:"Unauthorized"},{status:401});
+export async function GET(){if(!await isAdmin("properties"))return denied();await connectDB();return Response.json(await Property.find({}).sort({updatedAt:-1}).lean())}
+const imagesOnly=body=>{const media=(body.media||[]).filter(item=>item.type==="image");const images=media.map(item=>item.url).filter(Boolean);return {...body,media,images:images.length?images:(body.images||[]),image:images[0]||body.image||""}};
+export async function POST(request){if(!await isAdmin("properties"))return denied();await connectDB();const body=imagesOnly(await request.json());if(!body.title||!body.slug)return Response.json({error:"Title and slug are required."},{status:400});return Response.json(await Property.create(body),{status:201})}
+export async function PUT(request){if(!await isAdmin("properties"))return denied();await connectDB();const {_id,...raw}=await request.json();const body=imagesOnly(raw);const item=await Property.findByIdAndUpdate(_id,body,{returnDocument:"after",runValidators:true});return Response.json(item)}
+export async function DELETE(request){if(!await isAdmin("properties"))return denied();await connectDB();const {id}=await request.json();await Property.findByIdAndDelete(id);return Response.json({ok:true})}

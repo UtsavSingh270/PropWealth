@@ -1,0 +1,1259 @@
+.root {
+  --about-radius: 28px;
+  isolation: isolate;
+}
+
+.root :global(.about-main-hero) {
+  position: relative;
+  border-bottom: 1px solid var(--line);
+}
+
+.root :global(.about-main-hero)::before {
+  content: "";
+  position: absolute;
+  width: 430px;
+  height: 430px;
+  right: -180px;
+  top: 35px;
+  border-radius: 50%;
+  background: var(--pink);
+  filter: blur(150px);
+  opacity: .13;
+  pointer-events: none;
+}
+
+.root :global(.about-hero-copy) {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: none;
+  text-align: center;
+}
+
+.root :global(.about-hero-copy .eyebrow) {
+  justify-content: center;
+}
+
+.root :global(.about-hero-copy h1) {
+  width: 100%;
+  max-width: none;
+}
+
+.root :global(.about-hero-copy p) {
+  margin-inline: auto;
+}
+
+.root :global(.about-team-banner) {
+  position: relative;
+  width: 100%;
+  min-height: 0;
+  aspect-ratio: 1720 / 491;
+  transform: translateZ(0);
+}
+
+.root :global(.about-team-banner img) {
+  object-fit: cover;
+  object-position: center;
+}
+
+.root :global(.about-team-banner)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 65%, rgba(18, 10, 14, .16));
+  pointer-events: none;
+}
+
+.root :global(.about-stats article) {
+  transition: background .25s ease;
+}
+
+.root :global(.about-stats article:hover) {
+  background: color-mix(in srgb, var(--pink) 7%, var(--surface));
+}
+
+.root :global(.about-journey-section),
+.root :global(.about-values),
+.root :global(.about-people),
+.root :global(.about-team) {
+  position: relative;
+  padding-block: clamp(76px, 9vw, 125px);
+}
+
+.root :global(.about-section-heading) {
+  position: relative;
+  width: 100%;
+  max-width: none;
+}
+
+.root :global(.about-section-heading h2) {
+  width: 100%;
+  max-width: none;
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  line-height: 1.08;
+}
+
+.root :global(.about-section-heading)::after {
+  content: "";
+  display: block;
+  width: 74px;
+  height: 3px;
+  margin-top: 24px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--pink), transparent);
+}
+
+.root :global(.journey-card) {
+  transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease;
+}
+
+.root :global(.journey-line) {
+  top: 57px;
+  bottom: 57px;
+}
+
+/* The last marker sits near the top of its card, so stop the shared connector
+   at that marker instead of using the final card's lower edge. */
+.root :global(.journey-item:last-child)::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 57px;
+  right: -46px;
+  bottom: 0;
+  width: 10px;
+  background: var(--bg);
+  pointer-events: none;
+}
+
+.root :global(.journey-card:hover) {
+  transform: translateY(-5px);
+  border-color: color-mix(in srgb, var(--pink) 65%, var(--line));
+  box-shadow: 0 24px 55px rgba(53, 22, 38, .13);
+}
+
+.root :global(.journey-marker) {
+  transition: transform .3s ease, background .3s ease;
+}
+
+.root :global(.journey-item:hover .journey-marker) {
+  transform: scale(1.12);
+  background: var(--pink-dark);
+}
+
+.root :global(.journey-horizontal) {
+  display: grid;
+  gap: 34px;
+}
+
+.root :global(.journey-track) {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: start;
+}
+
+.root :global(.journey-track-line) {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  top: 25px;
+  height: 2px;
+  overflow: hidden;
+  background: var(--line);
+}
+
+.root :global(.journey-track-line i) {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--pink), var(--pink-dark));
+  transition: width .7s cubic-bezier(.2, .75, .25, 1);
+}
+
+.root :global(.journey-track button) {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  gap: 9px;
+  min-width: 0;
+  padding: 0 6px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.root :global(.journey-track button > span) {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border: 7px solid var(--bg);
+  border-radius: 50%;
+  background: var(--surface);
+  box-shadow: 0 0 0 1px var(--line);
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 900;
+  transition: transform .35s ease, color .35s ease, background .35s ease, box-shadow .35s ease;
+}
+
+.root :global(.journey-track button small) {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.root :global(.journey-track button:hover > span) {
+  transform: translateY(-3px) scale(1.05);
+}
+
+.root :global(.journey-track button.active) {
+  color: var(--pink-dark);
+}
+
+.root :global(.journey-track button.active > span) {
+  transform: scale(1.08);
+  background: var(--pink);
+  color: #fff;
+  box-shadow: 0 0 0 1px var(--pink), 0 10px 24px rgba(229, 57, 119, .24);
+}
+
+.root :global(.journey-horizontal-card) {
+  min-height: 390px;
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--about-radius);
+  background: var(--surface);
+  box-shadow: 0 18px 50px rgba(43, 19, 31, .08);
+  animation: journeyPanelIn .65s cubic-bezier(.2, .75, .25, 1) both;
+}
+
+.root :global(.journey-horizontal-image) {
+  position: relative;
+  min-height: 390px;
+  overflow: hidden;
+}
+
+.root :global(.journey-horizontal-image img) {
+  object-fit: cover;
+  animation: journeyImageIn 1s cubic-bezier(.2, .75, .25, 1) both;
+}
+
+.root :global(.journey-horizontal-copy) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(30px, 5vw, 65px);
+}
+
+.root :global(.journey-horizontal-copy > small) {
+  color: var(--pink-dark);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.root :global(.journey-horizontal-copy h3) {
+  margin: 12px 0 16px;
+  color: var(--ink);
+  font-size: clamp(1.7rem, 3vw, 2.75rem);
+  line-height: 1.12;
+}
+
+.root :global(.journey-horizontal-copy p) {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.root :global(.journey-dots) {
+  display: flex;
+  gap: 6px;
+  margin-top: 27px;
+}
+
+.root :global(.journey-dots i) {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--line);
+  transition: width .35s ease, background .35s ease;
+}
+
+.root :global(.journey-dots i.active) {
+  width: 28px;
+  background: var(--pink);
+}
+
+@keyframes journeyPanelIn {
+  from { opacity: 0; transform: translateY(14px) scale(.99); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes journeyImageIn {
+  from { transform: scale(1.06); }
+  to { transform: scale(1); }
+}
+
+.root :global(.journey-rich) {
+  position: relative;
+  display: grid;
+  gap: 24px;
+}
+
+.root :global(.journey-rich)::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 154px;
+  top: 42px;
+  bottom: 42px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--pink), color-mix(in srgb, var(--pink) 24%, var(--line)), var(--pink-dark));
+}
+
+.root :global(.journey-rich)::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 153px;
+  top: 42px;
+  width: 4px;
+  height: 72px;
+  border-radius: 999px;
+  background: linear-gradient(transparent, #fff, transparent);
+  opacity: .8;
+  animation: journeyRichGlow 4.5s ease-in-out infinite;
+}
+
+.root :global(.journey-rich-item) {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 112px 60px minmax(0, 1fr);
+  align-items: center;
+  outline: none;
+}
+
+.root :global(.journey-rich-label) {
+  display: grid;
+  justify-items: end;
+  padding-right: 21px;
+}
+
+.root :global(.journey-rich-label small) {
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.root :global(.journey-rich-label strong) {
+  color: var(--ink);
+  font-size: 24px;
+}
+
+.root :global(.journey-rich-axis) {
+  display: grid;
+  place-items: center;
+}
+
+.root :global(.journey-rich-axis span) {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 7px solid var(--bg);
+  border-radius: 50%;
+  background: var(--surface);
+  box-shadow: 0 0 0 1px var(--line);
+  color: var(--pink-dark);
+  font-size: 10px;
+  font-weight: 900;
+  transition: transform .35s ease, color .35s ease, background .35s ease, box-shadow .35s ease;
+}
+
+.root :global(.journey-rich-card) {
+  min-height: 210px;
+  display: grid;
+  grid-template-columns: minmax(190px, 270px) 1fr;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--surface);
+  box-shadow: 0 9px 30px rgba(43, 19, 31, .055);
+  transition: transform .4s cubic-bezier(.2, .75, .25, 1), border-color .35s ease, box-shadow .4s ease;
+}
+
+.root :global(.journey-rich-image) {
+  position: relative;
+  min-height: 210px;
+  overflow: hidden;
+  background: var(--soft);
+}
+
+.root :global(.journey-rich-image img) {
+  object-fit: cover;
+  transition: transform .65s cubic-bezier(.2, .75, .25, 1), filter .45s ease;
+}
+
+.root :global(.journey-rich-copy) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 25px 28px;
+}
+
+.root :global(.journey-rich-copy > div) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.root :global(.journey-rich-copy > div > small) {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.root :global(.journey-rich-copy h3) {
+  margin: 13px 0 10px;
+  color: var(--ink);
+  font-size: clamp(1.3rem, 2.1vw, 1.85rem);
+}
+
+.root :global(.journey-rich-copy p) {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.68;
+}
+
+.root :global(.journey-rich-item:hover .journey-rich-card),
+.root :global(.journey-rich-item:focus-visible .journey-rich-card) {
+  transform: translateX(8px);
+  border-color: color-mix(in srgb, var(--pink) 58%, var(--line));
+  box-shadow: 0 20px 48px rgba(53, 22, 38, .12);
+}
+
+.root :global(.journey-rich-item:hover .journey-rich-axis span),
+.root :global(.journey-rich-item:focus-visible .journey-rich-axis span) {
+  transform: scale(1.12);
+  background: var(--pink);
+  color: #fff;
+  box-shadow: 0 0 0 1px var(--pink), 0 8px 24px rgba(229, 57, 119, .25);
+}
+
+.root :global(.journey-rich-item:hover .journey-rich-image img),
+.root :global(.journey-rich-item:focus-visible .journey-rich-image img) {
+  transform: scale(1.045);
+  filter: saturate(1.05);
+}
+
+@keyframes journeyRichGlow {
+  0%, 100% { transform: translateY(0); opacity: 0; }
+  15% { opacity: .8; }
+  85% { opacity: .8; }
+  100% { transform: translateY(calc(100% + 840px)); opacity: 0; }
+}
+
+.root :global(.journey-scroll) {
+  --journey-start: 0px;
+  --journey-end: 0px;
+  --journey-progress: 0;
+  position: relative;
+  display: grid;
+  gap: 34px;
+}
+
+.root :global(.journey-scroll-line) {
+  position: absolute;
+  z-index: 0;
+  left: 50%;
+  top: var(--journey-start);
+  bottom: var(--journey-end);
+  width: 5px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--muted) 22%, transparent);
+  filter: blur(.35px);
+  transform: translateX(-50%);
+}
+
+.root :global(.journey-scroll-line i) {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, var(--pink), var(--pink-dark));
+  box-shadow: 0 0 16px color-mix(in srgb, var(--pink) 38%, transparent);
+  transform: scaleY(var(--journey-progress));
+  transform-origin: top;
+  transition: transform .12s linear;
+}
+
+.root :global(.journey-scroll-item) {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 78px minmax(0, 1fr);
+  align-items: center;
+  min-height: 285px;
+}
+
+.root :global(.journey-scroll-card) {
+  display: grid;
+  grid-template-columns: minmax(150px, .82fr) 1.18fr;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: var(--surface);
+  box-shadow: 0 12px 38px rgba(43, 19, 31, .07);
+  opacity: 0;
+  transition: opacity .65s ease, transform .75s cubic-bezier(.2, .75, .25, 1), border-color .35s ease, box-shadow .35s ease;
+}
+
+.root :global(.card-right .journey-scroll-card) {
+  grid-column: 3;
+  transform: translateX(58px);
+}
+
+.root :global(.card-left .journey-scroll-card) {
+  grid-column: 1;
+  grid-row: 1;
+  transform: translateX(-58px);
+}
+
+.root :global(.journey-scroll-item.is-visible .journey-scroll-card) {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.root :global(.journey-scroll-marker) {
+  position: relative;
+  z-index: 2;
+  grid-column: 2;
+  grid-row: 1;
+  display: grid;
+  place-items: center;
+}
+
+.root :global(.journey-scroll-marker::before) {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border: 7px solid var(--bg);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--muted) 30%, var(--surface));
+  box-shadow: 0 0 0 1px var(--line);
+  transition: width .4s ease, height .4s ease, background .4s ease, box-shadow .4s ease;
+}
+
+.root :global(.journey-scroll-marker span) {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  color: transparent;
+  font-size: 10px;
+  font-weight: 900;
+  transform: scale(.55);
+  transition: color .35s ease, transform .45s cubic-bezier(.2, .8, .2, 1);
+}
+
+.root :global(.journey-scroll-marker.active::before) {
+  width: 46px;
+  height: 46px;
+  background: var(--pink);
+  box-shadow: 0 0 0 1px var(--pink), 0 0 24px color-mix(in srgb, var(--pink) 35%, transparent);
+}
+
+.root :global(.journey-scroll-marker.active span) {
+  color: #fff;
+  transform: scale(1);
+}
+
+.root :global(.journey-scroll-image) {
+  position: relative;
+  min-height: 245px;
+  overflow: hidden;
+  background: var(--soft);
+}
+
+.root :global(.journey-scroll-image img) {
+  object-fit: cover;
+  transition: transform .65s ease;
+}
+
+.root :global(.journey-scroll-copy) {
+  align-self: center;
+  padding: 24px;
+}
+
+.root :global(.journey-scroll-copy small) {
+  color: var(--pink-dark);
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.root :global(.journey-scroll-copy h3) {
+  margin: 10px 0 11px;
+  color: var(--ink);
+  font-size: clamp(1.2rem, 1.8vw, 1.6rem);
+  line-height: 1.18;
+}
+
+.root :global(.journey-scroll-copy p) {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.root :global(.journey-scroll-item:hover .journey-scroll-card) {
+  border-color: color-mix(in srgb, var(--pink) 48%, var(--line));
+  box-shadow: 0 20px 48px rgba(53, 22, 38, .12);
+}
+
+.root :global(.journey-scroll-item:hover .journey-scroll-image img) {
+  transform: scale(1.035);
+}
+
+.root :global(.about-values-grid article) {
+  overflow: hidden;
+}
+
+.root :global(.about-values-grid article)::after {
+  content: "";
+  position: absolute;
+  width: 130px;
+  height: 130px;
+  right: -70px;
+  bottom: -75px;
+  border-radius: 50%;
+  background: var(--pink);
+  opacity: .08;
+  transition: transform .4s ease;
+}
+
+.root :global(.about-values-grid article:hover)::after {
+  transform: scale(1.35);
+}
+
+.root :global(.person-card) {
+  box-shadow: 0 12px 38px rgba(43, 19, 31, .06);
+}
+
+.root :global(.founder-card) {
+  position: relative;
+  transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+
+.root :global(.founder-card:hover .person-image img) {
+  transform: scale(1.025);
+}
+
+.root :global(.founder-card > div:last-child) {
+  z-index: 2;
+  transition: color .35s ease, background .35s ease, transform .35s ease;
+}
+
+.root :global(.founder-card > div:last-child h3),
+.root :global(.founder-card > div:last-child p) {
+  transition: color .35s ease, transform .35s ease;
+}
+
+.root :global(.founder-card:hover > div:last-child) {
+  background: var(--surface);
+  transform: none;
+}
+
+.root :global(.founder-card:hover > div:last-child h3),
+.root :global(.founder-card:hover > div:last-child p) {
+  color: inherit;
+  transform: none;
+}
+
+.root :global(.founder-card:hover) {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--pink) 45%, var(--line));
+  box-shadow: 0 16px 40px rgba(43, 19, 31, .1);
+}
+
+.root :global(.founder-card > div:last-child) {
+  position: relative;
+  padding: 26px;
+  border-top: 1px solid var(--line);
+}
+
+.root :global(.founder-card > div:last-child)::before {
+  content: "";
+  position: absolute;
+  left: 26px;
+  top: -2px;
+  width: 52px;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--pink);
+}
+
+.root :global(.team-member-card) {
+  position: relative;
+  height: 560px;
+  outline: none;
+  background: #171217;
+}
+
+.root :global(.team-member-card:focus-visible) {
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--pink) 30%, transparent), var(--shadow);
+}
+
+.root :global(.team-member-card .person-image) {
+  width: 100%;
+  height: 100% !important;
+}
+
+.root :global(.team-member-content) {
+  position: absolute;
+  z-index: 2;
+  inset: auto 0 0;
+  min-height: 0;
+  padding: 78px 24px 23px;
+  border: 0;
+  color: #fff;
+  background: linear-gradient(180deg, transparent, rgba(17, 9, 13, .58) 35%, rgba(17, 9, 13, .82));
+  transform: translateY(0);
+  transition: padding .4s ease, background .4s ease;
+}
+
+.root :global(.team-member-content > span) {
+  color: #ff93b9;
+}
+
+.root :global(.team-member-content h3) {
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, .35);
+}
+
+.root :global(.team-member-content p) {
+  display: block;
+  max-height: 0;
+  margin: 0;
+  overflow: hidden;
+  -webkit-line-clamp: unset;
+  opacity: 0;
+  color: rgba(255, 255, 255, .88);
+  transform: translateY(22px);
+  transition: max-height .5s ease, opacity .35s ease, transform .45s ease, margin .35s ease;
+}
+
+.root :global(.team-member-card:hover .team-member-content),
+.root :global(.team-member-card:focus .team-member-content) {
+  padding-top: 115px;
+  background: linear-gradient(180deg, transparent, rgba(75, 20, 44, .58) 28%, rgba(17, 9, 13, .9));
+}
+
+.root :global(.team-member-card:hover .team-member-content p),
+.root :global(.team-member-card:focus .team-member-content p) {
+  max-height: 360px;
+  margin-top: 12px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.root :global(.team-member-card:hover .person-image img),
+.root :global(.team-member-card:focus .person-image img) {
+  transform: scale(1.06);
+}
+
+@media (max-width: 599px) {
+  .root {
+    --about-radius: 20px;
+  }
+
+  .root :global(.about-main-hero)::before {
+    width: 250px;
+    height: 250px;
+    right: -120px;
+  }
+
+  .root :global(.about-hero-copy h1) {
+    font-size: clamp(2.5rem, 13vw, 3.5rem);
+  }
+
+  .root :global(.journey-line) {
+    top: 57px;
+    bottom: 57px;
+  }
+
+  .root :global(.about-journey-section),
+  .root :global(.about-values),
+  .root :global(.about-people),
+  .root :global(.about-team) {
+    padding-block: 30px;
+  }
+
+  .root :global(.journey-card),
+  .root :global(.person-card),
+  .root :global(.about-values-grid article) {
+    border-radius: var(--about-radius);
+  }
+
+  .root :global(.team-member-card) {
+    height: min(140vw, 520px);
+  }
+
+  .root :global(.journey-horizontal) {
+    gap: 22px;
+  }
+
+  .root :global(.journey-track-line) {
+    left: 10%;
+    right: 10%;
+    top: 19px;
+  }
+
+  .root :global(.journey-track button) {
+    gap: 5px;
+    padding: 0 2px;
+  }
+
+  .root :global(.journey-track button > span) {
+    width: 40px;
+    height: 40px;
+    border-width: 5px;
+    font-size: 9px;
+  }
+
+  .root :global(.journey-track button small) {
+    font-size: 7px;
+    letter-spacing: .02em;
+  }
+
+  .root :global(.journey-horizontal-card) {
+    min-height: 0;
+    grid-template-columns: 1fr;
+  }
+
+  .root :global(.journey-horizontal-image) {
+    min-height: 210px;
+    aspect-ratio: 16 / 10;
+  }
+
+  .root :global(.journey-horizontal-copy) {
+    padding: 21px 18px 23px;
+  }
+
+  .root :global(.journey-horizontal-copy h3) {
+    margin: 9px 0 11px;
+    font-size: 1.55rem;
+  }
+
+  .root :global(.journey-horizontal-copy p) {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .root :global(.journey-dots) {
+    margin-top: 18px;
+  }
+
+  .root :global(.journey-rich) {
+    gap: 18px;
+  }
+
+  .root :global(.journey-rich)::before {
+    left: 20px;
+    top: 28px;
+    bottom: 28px;
+  }
+
+  .root :global(.journey-rich)::after {
+    left: 19px;
+    top: 28px;
+  }
+
+  .root :global(.journey-rich-item) {
+    grid-template-columns: 41px minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .root :global(.journey-rich-label) {
+    display: none;
+  }
+
+  .root :global(.journey-rich-axis) {
+    padding-top: 15px;
+  }
+
+  .root :global(.journey-rich-axis span) {
+    width: 34px;
+    height: 34px;
+    border-width: 5px;
+    font-size: 8px;
+  }
+
+  .root :global(.journey-rich-card) {
+    min-height: 0;
+    grid-template-columns: 1fr;
+    border-radius: 15px;
+  }
+
+  .root :global(.journey-rich-image) {
+    min-height: 175px;
+    aspect-ratio: 16 / 9;
+  }
+
+  .root :global(.journey-rich-copy) {
+    padding: 17px 16px 19px;
+  }
+
+  .root :global(.journey-rich-copy > div) {
+    align-items: flex-start;
+  }
+
+  .root :global(.journey-rich-copy > div > small) {
+    font-size: 8px;
+    text-align: right;
+  }
+
+  .root :global(.journey-rich-copy h3) {
+    margin: 10px 0 8px;
+    font-size: 1.25rem;
+  }
+
+  .root :global(.journey-rich-copy p) {
+    font-size: 11px;
+    line-height: 1.58;
+  }
+
+  .root :global(.journey-rich-item:hover .journey-rich-card),
+  .root :global(.journey-rich-item:focus-visible .journey-rich-card) {
+    transform: translateX(3px);
+  }
+
+  .root :global(.journey-scroll) {
+    gap: 22px;
+  }
+
+  .root :global(.journey-scroll-line) {
+    left: 21px;
+    width: 4px;
+  }
+
+  .root :global(.journey-scroll-item) {
+    grid-template-columns: 43px minmax(0, 1fr);
+    min-height: 0;
+    align-items: start;
+  }
+
+  .root :global(.journey-scroll-marker) {
+    grid-column: 1;
+    grid-row: 1;
+    padding-top: 18px;
+  }
+
+  .root :global(.journey-scroll-marker::before) {
+    width: 16px;
+    height: 16px;
+    border-width: 5px;
+  }
+
+  .root :global(.journey-scroll-marker span) {
+    width: 36px;
+    height: 36px;
+    font-size: 8px;
+  }
+
+  .root :global(.journey-scroll-marker.active::before) {
+    width: 36px;
+    height: 36px;
+  }
+
+  .root :global(.card-right .journey-scroll-card),
+  .root :global(.card-left .journey-scroll-card) {
+    grid-column: 2;
+    grid-row: 1;
+    grid-template-columns: 1fr;
+    border-radius: 16px;
+  }
+
+  .root :global(.card-left .journey-scroll-card) {
+    transform: translateX(36px);
+  }
+
+  .root :global(.journey-scroll-item.is-visible .journey-scroll-card) {
+    transform: translateX(0);
+  }
+
+  .root :global(.journey-scroll-image) {
+    min-height: 170px;
+    aspect-ratio: 16 / 9;
+  }
+
+  .root :global(.journey-scroll-copy) {
+    padding: 17px 16px 19px;
+  }
+
+  .root :global(.journey-scroll-copy h3) {
+    margin: 8px 0;
+    font-size: 1.18rem;
+  }
+
+  .root :global(.journey-scroll-copy p) {
+    font-size: 11px;
+    line-height: 1.58;
+  }
+}
+
+@media (min-width: 600px) {
+  .root :global(.team-member-card) {
+    height: clamp(360px, 32vw, 500px);
+  }
+}
+
+@media (min-width: 600px) and (max-width: 1023px) {
+  .root :global(.team-member-card) {
+    height: clamp(330px, 45vw, 430px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root :global(.journey-card),
+  .root :global(.journey-marker),
+  .root :global(.about-values-grid article)::after {
+    transition: none;
+  }
+
+  .root :global(.journey-horizontal-card),
+  .root :global(.journey-horizontal-image img) {
+    animation: none;
+  }
+
+  .root :global(.journey-rich)::after {
+    animation: none;
+  }
+
+  .root :global(.journey-rich-item),
+  .root :global(.journey-rich-card),
+  .root :global(.journey-rich-axis span),
+  .root :global(.journey-rich-image img) {
+    transition: none;
+  }
+
+  .root :global(.journey-scroll-line i),
+  .root :global(.journey-scroll-card),
+  .root :global(.journey-scroll-marker::before),
+  .root :global(.journey-scroll-marker span),
+  .root :global(.journey-scroll-image img) {
+    transition: none;
+  }
+}
+
+@media (max-width: 599px) {
+  .root :global(.about-hero-copy h1),
+  .root :global(.about-section-heading h2) {
+    font-size: clamp(1.65rem, 7.5vw, 2.1rem);
+    text-align: center;
+  }
+
+  .root :global(.about-section-heading) {
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .root :global(.about-section-heading)::after {
+    width: 40px;
+    margin: 10px auto 0;
+  }
+
+  .root :global(.about-values-grid article) {
+    display: grid;
+    grid-template-columns: 28px minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    column-gap: 8px;
+    row-gap: 3px;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .root :global(.about-values-grid article i) {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    width: 28px;
+    height: 28px;
+    margin: 0;
+  }
+
+  .root :global(.about-values-grid article i svg) {
+    width: 14px;
+  }
+
+  .root :global(.about-values-grid article > span) {
+    display: none;
+  }
+
+  .root :global(.about-values-grid article h3) {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0;
+    font-size: 11px;
+  }
+
+  .root :global(.about-values-grid article p) {
+    grid-column: 2;
+    grid-row: 2;
+    display: -webkit-box;
+    margin: 0;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    font-size: 7px;
+    line-height: 1.3;
+  }
+
+  .root :global(.about-team-banner) {
+    min-height: 0 !important;
+    aspect-ratio: 1720 / 491;
+    border-radius: 12px;
+  }
+
+  .root :global(.about-team-banner img) {
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .root :global(.founders-grid),
+  .root :global(.team-members-grid) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .root :global(.founders-grid .person-image) {
+    height: 180px;
+  }
+
+  .root :global(.founder-card > div:last-child) {
+    padding: 9px;
+  }
+
+  .root :global(.team-member-card) {
+    height: 260px;
+  }
+
+  .root :global(.team-member-content) {
+    padding: 35px 9px 9px;
+  }
+
+  .root :global(.team-member-content h3) {
+    font-size: 12px;
+  }
+
+  .root :global(.team-member-content p) {
+    font-size: 8px;
+    line-height: 1.35;
+  }
+
+  .root :global(.journey-scroll) {
+    gap: 12px;
+  }
+
+  .root :global(.journey-scroll-line) {
+    left: 50%;
+    width: 3px;
+  }
+
+  .root :global(.journey-scroll-item) {
+    grid-template-columns: minmax(0, 1fr) 32px minmax(0, 1fr);
+    min-height: 0;
+    align-items: start;
+  }
+
+  .root :global(.journey-scroll-marker) {
+    grid-column: 2;
+    grid-row: 1;
+    padding-top: 13px;
+  }
+
+  .root :global(.journey-scroll-marker::before) {
+    width: 12px;
+    height: 12px;
+    border-width: 4px;
+  }
+
+  .root :global(.journey-scroll-marker span) {
+    width: 28px;
+    height: 28px;
+    font-size: 7px;
+  }
+
+  .root :global(.journey-scroll-marker.active::before) {
+    width: 28px;
+    height: 28px;
+  }
+
+  .root :global(.card-right .journey-scroll-card),
+  .root :global(.card-left .journey-scroll-card) {
+    grid-template-columns: minmax(0, 1fr);
+    border-radius: 11px;
+  }
+
+  .root :global(.card-right .journey-scroll-card) {
+    grid-column: 3;
+    grid-row: 1;
+    transform: translateX(18px);
+  }
+
+  .root :global(.card-left .journey-scroll-card) {
+    grid-column: 1;
+    grid-row: 1;
+    transform: translateX(-18px);
+  }
+
+  .root :global(.journey-scroll-item.is-visible .journey-scroll-card) {
+    transform: translateX(0);
+  }
+
+  .root :global(.journey-scroll-image) {
+    display: none;
+  }
+
+  .root :global(.journey-scroll-copy) {
+    padding: 9px 8px;
+  }
+
+  .root :global(.journey-scroll-copy small) {
+    font-size: 6px;
+  }
+
+  .root :global(.journey-scroll-copy h3) {
+    margin: 4px 0;
+    font-size: 10px;
+    line-height: 1.2;
+  }
+
+  .root :global(.journey-scroll-copy p) {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    font-size: 6.5px;
+    line-height: 1.35;
+  }
+}

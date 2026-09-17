@@ -1,0 +1,1 @@
+import ResourceDetail,{resourceMetadata} from "../../../components/ResourceDetail";export const dynamic="force-dynamic";export async function generateMetadata({params}){return resourceMetadata("podcast",(await params).slug)}export default async function Page({params}){return <ResourceDetail type="podcast" slug={(await params).slug} label="Podcasts" basePath="/podcasts"/>}

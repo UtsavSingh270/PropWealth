@@ -1,0 +1,2 @@
+import AuditLog from "../models/AuditLog";import { getAdminSession } from "./adminAuth";
+export async function logAudit(section,action,item,changes={}){try{const session=await getAdminSession();await AuditLog.create({username:session?.email||session?.name||"admin",adminUserId:session?.id||null,section,action,itemId:item?._id?.toString?.()||item?.id||null,itemName:item?.title||item?.name||item?.email||"",changes})}catch(error){console.error("Audit log failed:",error.message)}}

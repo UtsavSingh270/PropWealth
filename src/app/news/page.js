@@ -1,0 +1,1 @@
+import ResourceListing from "../../components/ResourceListing";export const metadata={title:"News & Insights"};export const dynamic="force-dynamic";export default function Page(){return <ResourceListing type="news" eyebrow="Market intelligence" title="News & Insights" description="A reality check on the current state of the Australian real estate market." basePath="/news"/>}

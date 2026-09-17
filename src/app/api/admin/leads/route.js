@@ -1,0 +1,3 @@
+import { isAdmin } from "../../../../lib/adminAuth";import { connectDB } from "../../../../lib/mongodb";import Lead from "../../../../models/Lead";
+export async function GET(){if(!await isAdmin("leads"))return Response.json({error:"Unauthorized"},{status:401});await connectDB();return Response.json(await Lead.find({}).sort({createdAt:-1}).lean())}
+export async function PATCH(request){if(!await isAdmin("leads"))return Response.json({error:"Unauthorized"},{status:401});await connectDB();const {id,status}=await request.json();return Response.json(await Lead.findByIdAndUpdate(id,{status},{returnDocument:"after"}))}

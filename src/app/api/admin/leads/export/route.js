@@ -1,0 +1,3 @@
+import { isAdmin } from "../../../../../lib/adminAuth";import { connectDB } from "../../../../../lib/mongodb";import Lead from "../../../../../models/Lead";
+const clean=(value)=>`"${String(value??"").replaceAll('"','""')}"`;
+export async function GET(){if(!await isAdmin("leads"))return Response.json({error:"Unauthorized"},{status:401});await connectDB();const leads=await Lead.find({}).sort({createdAt:-1}).lean();const keys=["createdAt","name","email","phone","propertyTitle","action","status","budget","timeframe","experience","appointmentDate","message"];const csv=[keys.join(","),...leads.map(l=>keys.map(k=>clean(l[k])).join(","))].join("\n");return new Response(csv,{headers:{"Content-Type":"text/csv","Content-Disposition":"attachment; filename=propwealth-leads.csv"}})}

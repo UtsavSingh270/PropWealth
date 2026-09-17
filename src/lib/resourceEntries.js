@@ -1,0 +1,3 @@
+import { connectDB } from "./mongodb";import ResourceEntry from "../models/ResourceEntry";
+export async function getResourceEntries(type,filter={}){try{await connectDB();const now=new Date();return JSON.parse(JSON.stringify(await ResourceEntry.find({type,...filter,visible:true,$or:[{status:"published"},{status:"scheduled",scheduledAt:{$lte:now}}]}).populate("author").sort({featured:-1,publishedAt:-1,scheduledAt:-1,createdAt:-1}).lean()))}catch(error){console.warn(`Resource database unavailable for ${type}:`,error.message);return[]}}
+export async function getResourceEntry(type,slug){const items=await getResourceEntries(type,{slug});return items[0]||null}
