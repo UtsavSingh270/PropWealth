@@ -1,131 +1,35 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Play } from "lucide-react";
-
-const audiences = [
-  ["01", "Rentvestors", "Get into the market early with expert help and kick things off with a deposit starting at $25,000.", "/about/who-we-guide/rentvestors"],
-  ["02", "Portfolio Investors", "You’ve started your investment journey—now grow it smartly.", "/about/who-we-guide/portfolio-investors"],
-  ["03", "Large Portfolio Investors", "Maximise every asset and keep your long-term portfolio moving.", "/about/who-we-guide/large-portfolio-investors"]
-];
-const stats = [
-  ["$310M", "Value of properties acquired"], 
-  ["532+", "Total deals completed"], 
-  ["37%", "Equity growth in 12 months"]
-];
+import { ArrowRight, Pause, Play } from "lucide-react";
+import s from "./HomeLanding.module.css";
 
 export default function HomeHero() {
-  const sectionRef = useRef(null);
-  const videoRef = useRef(null);
-  const frameRef = useRef(0);
-  const [muted, setMuted] = useState(true);
-
+  const video = useRef(null);
+  const [playing, setPlaying] = useState(false);
   useEffect(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
     const update = () => {
-      frameRef.current = 0;
-      const section = sectionRef.current;
-      if (!section) return;
-      
-      const rect = section.getBoundingClientRect();
-      const range = Math.max(section.offsetHeight - window.innerHeight, 1);
-      const progress = Math.min(1, Math.max(0, -rect.top / range));
-      const reveal = Math.min(1, Math.max(0, (progress - .08) / .3));
-      
-      section.style.setProperty("--hero-progress", reveal.toFixed(4));
-      section.style.setProperty("--hero-scroll-progress", progress.toFixed(4));
-      section.style.setProperty("--hero-blur", `${(reveal * 1.6).toFixed(2)}px`);
-      section.dataset.revealed = reveal > .05 ? "true" : "false";
-      document.documentElement.dataset.heroRevealed = progress > .2 ? "true" : "false";
+      if (media.matches) video.current?.pause();
+      else video.current?.play().catch(() => {});
     };
-    
-    const requestUpdate = () => {
-      if (!frameRef.current) frameRef.current = requestAnimationFrame(update);
-    };
-    
     update();
-    window.addEventListener("scroll", requestUpdate, { passive: true });
-    window.addEventListener("resize", requestUpdate);
-    
-    return () => {
-      window.removeEventListener("scroll", requestUpdate);
-      window.removeEventListener("resize", requestUpdate);
-      if (frameRef.current) cancelAnimationFrame(frameRef.current);
-      delete document.documentElement.dataset.heroRevealed;
-    };
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
   }, []);
-
-  const toggleVideo = () => {
-    const video = videoRef.current;
-    if (!video) return;
-    video.muted = !video.muted;
-    setMuted(video.muted);
-    video.play().catch(() => {});
+  const toggle = () => {
+    if (video.current.paused) video.current.play().catch(() => {});
+    else video.current.pause();
   };
-
-  return (
-    <section ref={sectionRef} className="cinematic-hero" style={{ "--hero-progress": 0 }}>
-      <div className="cinematic-stage">
-        <video 
-          ref={videoRef} 
-          className="cinematic-video cinematic-video-fix" 
-          src="/Propwealth_Hero_SHOTS_with-sound.mp4" 
-          autoPlay 
-          muted 
-          loop 
-          playsInline 
-          preload="auto" 
-          aria-label="PropWealth property and advisory highlights" 
-        />
-        
-        {/* Dark cinematic overlay - opacity is controlled by JS scroll progress */}
-        <div className="cinematic-overlay-fix"></div>
-        
-        <div className="cinematic-intro" aria-hidden="true">
-          <span><Play /> Scroll to explore</span>
-        </div>
-        
-        <div className="cinematic-content cinematic-content-fix">
-          <div className="shell cinematic-shell-fix">
-            
-            {/* Top Content */}
-            <div className="hero-center-text">
-              <h1>Welcome to <span>PropWealth</span></h1>
-              <p>Your Shortcut to Millionaire Status</p>
-              <div className="actions">
-                <Link href="/contact" className="button">Make Your Move</Link>
-                <button type="button" className="button hero-watch-btn" onClick={toggleVideo}>
-                  <Play />{muted ? "Watch Video" : "Mute Video"}
-                </button>
-              </div>
-            </div>
-
-            {/* Stats */}
-            <div className="hero-stats-fix">
-              {stats.map(([value, label]) => (
-                <div key={label}>
-                  <strong>{value}</strong>
-                  <span>{label}</span>
-                </div>
-              ))}
-            </div>
-
-            {/* Pathways */}
-            <div className="hero-paths-fix">
-              {audiences.map(([number, title, text, href]) => (
-                <Link href={href} key={title} className="hero-path-card">
-                  <div className="path-head">
-                    <span>{number}</span>
-                    <i><ArrowRight /></i>
-                  </div>
-                  <h2>{title}</h2>
-                  <p>{text}</p>
-                </Link>
-              ))}
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+  return <section className={s.hero} aria-label="Property investing with PropWealth">
+    <video ref={video} className={s.heroVideo} src="/Propwealth_Hero_SHOTS_with-sound.mp4" poster="/CTA.jpg" muted loop playsInline preload="metadata" onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} aria-hidden="true" />
+    <div className={s.heroShade}/>
+    <button className={s.videoControl} onClick={toggle} aria-label={playing ? "Pause background video" : "Play background video"}>{playing ? <Pause size={16}/> : <Play size={16}/>}</button>
+    <div className={s.wrap + " " + s.heroContent}>
+      <span className={s.kicker}>Your goals. Our strategy. Your next chapter.</span>
+      <h1>Don’t just buy property.<br/>Build your <em>next chapter.</em></h1>
+      <div className={s.heroBottom}><p>We’re an Australian buyer’s agency turning your property goals into a clear plan — with market research, the right property and guidance at every step.</p><div><Link href="/contact" className={s.primary}>Book Your Free Call <ArrowRight size={18}/></Link><small>A real conversation. No obligation.</small></div></div>
+      <div className={s.heroFoot}><span>Strategy → Research → Property → Beyond</span><a href="#success">Discover the PropWealth approach ↓</a></div>
+    </div>
+  </section>;
 }

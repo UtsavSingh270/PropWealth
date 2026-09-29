@@ -1050,6 +1050,7 @@ body:has(.not-found-page) .cookie-banner{display:none!important}
 @keyframes processLottieIn{from{opacity:0;transform:translateY(14px);filter:blur(5px)}to{opacity:1;transform:none;filter:none}}
 @media(max-width:900px){.process-lottie-panel{grid-template-columns:1fr 1fr;gap:24px;min-height:340px}.process-lottie-visual{height:280px}.process-lottie-copy h3{font-size:clamp(2.5rem,7vw,4rem)}}
 @media(max-width:620px){.process-page-heading{text-align:center}.process-page-heading .eyebrow{justify-content:center}.process-lottie-rail{margin-bottom:18px}.process-lottie-rail::before,.process-lottie-rail::after{top:17px}.process-lottie-rail i{width:34px;height:34px;font-size:7px}.process-lottie-rail button span{font-size:6.5px}.process-lottie-panel{grid-template-columns:1fr;gap:10px;min-height:0;padding:14px;border-radius:16px}.process-lottie-visual{height:205px;order:0}.process-lottie-copy{order:1;text-align:center}.process-lottie-copy>span{font-size:7px}.process-lottie-copy h3{margin:6px 0;font-size:2.1rem}.process-lottie-copy p{font-size:9px;line-height:1.5}.process-source-link{justify-content:center;margin-top:10px;font-size:8px}.missing-process-animation{gap:7px;padding:14px}.missing-process-animation>svg{width:42px!important;height:42px!important;padding:10px}.missing-process-animation strong{font-size:11px}.missing-process-animation span{font-size:7px}.missing-process-animation a{font-size:7px}}
+.process-lottie-rail button span{white-space:nowrap}
 
 /* Mobile process order: horizontal timeline, animation, then content */
 @media(max-width:620px){

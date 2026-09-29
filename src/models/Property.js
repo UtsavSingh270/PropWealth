@@ -5,6 +5,7 @@ const PropertySchema = new mongoose.Schema({
   state: String, category: String, status: String, price: Number, beds: Number,
   baths: Number, cars: Number, area: Number, yield: Number, growth: String, image: String,
   images: [String], description: String,
+  purchasePrice: Number, currentValue: Number, purchaseDate: Date, profit: Number, equityGrowth: Number,
   media:[{url:String,type:{type:String,enum:["image","video"]},name:String,mime:String,size:Number}],visible:{type:Boolean,default:true},featured:{type:Boolean,default:false},
 }, { timestamps: true });
 

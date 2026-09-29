@@ -4,12 +4,12 @@ import { ArrowUpRight,Check,Handshake } from "lucide-react";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 const stages=[
-  {number:"01",title:"Strategise",kicker:"We strategise",animation:"/Strategise.lottie",description:"We begin with your goals, borrowing position, risk preferences and portfolio ambitions, then turn them into a focused investment brief."},
-  {number:"02",title:"Locate",kicker:"We locate",animation:"/Discover.lottie",description:"We assess Australian markets and suburbs through employment, infrastructure, affordability, supply and long-term demand signals."},
-  {number:"03",title:"Shortlist",kicker:"We shortlist",animation:"/Research.lottie",description:"Potential properties are compared against your brief, then narrowed through property-level research and layered due diligence."},
-  {number:"04",title:"Negotiate",kicker:"We negotiate",animation:"/Negotiation.lottie",description:"We shape the offer, manage the negotiation and coordinate the right specialists so the decision remains commercial—not emotional."},
-  {number:"05",title:"Settlement",kicker:"We guide settlement",animation:"/Settlement.lottie",description:"We guide you through finance, legal milestones and final coordination so the property reaches settlement clearly and confidently."},
-  {number:"06",title:"Review",kicker:"We review",animation:"/Review.lottie",description:"We review the outcome, reassess your position and prepare a clear direction for the next portfolio decision."}
+  {number:"01",title:"Understand Your Position",kicker:"Step 1 · Understand your position",animation:"/Discover.lottie",description:"We start by understanding where you are today, what you want to achieve and what role the next property needs to play."},
+  {number:"02",title:"Build the Strategy",kicker:"Step 2 · Build the strategy",animation:"/Strategise.lottie",description:"We create a clear direction based on your goals, financial position, risk preferences and longer-term property plans."},
+  {number:"03",title:"Research the Market",kicker:"Step 3 · Research the market",animation:"/Research.lottie",description:"We use market research and PropWealth Next data to identify suitable markets, suburbs and opportunities supported by evidence."},
+  {number:"04",title:"Find the Right Property",kicker:"Step 4 · Find the right property",animation:"/Discover.lottie",description:"Our team researches and assesses properties that fit the strategy, including the location, demand, supply, rental potential and value."},
+  {number:"05",title:"Secure the Property",kicker:"Step 5 · Secure the property",animation:"/Negotiation.lottie",description:"We assist with negotiation, due diligence and the buying process so you can move forward with clarity and confidence."},
+  {number:"06",title:"Plan What Comes Next",kicker:"Step 6 · Plan what comes next",animation:"/Settlement.lottie",description:"The journey does not necessarily end after one purchase. We look at how the property fits into your client’s longer-term plans."}
 ];
 
 export default function ProcessLottieStages(){
@@ -17,7 +17,7 @@ export default function ProcessLottieStages(){
   useEffect(()=>{const timer=setInterval(()=>setActive(value=>(value+1)%stages.length),6000);return()=>clearInterval(timer)},[]);
   const stage=stages[active];
   return <section className="section process-lottie-section"><div className="shell">
-    <div className="section-head process-page-heading"><div><span className="eyebrow">How we work</span><h2>From strategy to settlement.</h2></div><p>Choose a stage or let the journey advance automatically.</p></div>
+    <div className="section-head process-page-heading"><div><span className="eyebrow">Our process</span><h2>How your property journey works.</h2></div><p>Six simple stages, from understanding your goals to planning what comes next.</p></div>
     <div className="process-lottie-experience" style={{"--active-process":active}}>
       <div className="process-lottie-rail" role="tablist" aria-label="PropWealth process stages">{stages.map((item,index)=><button key={item.title} type="button" role="tab" aria-selected={active===index} className={`${active===index?"active":""} ${index<active?"complete":""}`} onClick={()=>setActive(index)}><i>{index<active?<Check/>:item.number}</i><span>{item.title}</span></button>)}</div>
       <div className="process-lottie-panel" key={stage.title}>

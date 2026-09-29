@@ -11,7 +11,7 @@ export default function Footer() {
       </div>
       <div className="footer-explore">
         <h3>Explore</h3>
-        <Link href="/properties">Properties</Link>
+        <Link href="/success-stories">Client results</Link>
         <Link href="/services">Services</Link>
         <Link href="/process">Our process</Link>
         <Link href="/propwealth-next">PropWealth NEXT</Link>

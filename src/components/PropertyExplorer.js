@@ -26,7 +26,7 @@ export default function PropertyExplorer({properties,compact=false,initialOpenSl
   const updatePhone=value=>setForm(current=>({...current,phone:value.replace(/\D/g,"").slice(0,9)}));
   const submit=async(e)=>{e.preventDefault();setResult("");if(!/^[2-9]\d{8}$/.test(form.phone)){setResult("Please enter a valid 9-digit Australian phone number.");return}setSending(true);const australianPhone=`+61${form.phone}`;try{const response=await fetch("/api/leads",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({...form,phone:australianPhone,consent:true,action:lead.action,propertySlug:lead.property.slug,propertyTitle:lead.property.title})});const data=await response.json();if(!response.ok)throw new Error(data.error);localStorage.setItem("propwealth-contact",JSON.stringify({name:form.name,email:form.email,phone:australianPhone}));setResult("Your booking request has been received. We’ll contact you shortly.")}catch(error){setResult(error.message)}finally{setSending(false)}};
   return <>
-    {!compact&&<>
+    {/* {!compact&&<>
     <div className="property-toolbar">
       <label className="search-field">
         <Search size={18}/>
@@ -58,7 +58,7 @@ export default function PropertyExplorer({properties,compact=false,initialOpenSl
       <label><span>Sort by</span><select value={filters.sort} onChange={e=>update("sort",e.target.value)}><option value="featured">Featured</option><option value="priceLow">Price: low to high</option><option value="priceHigh">Price: high to low</option><option value="yield">Highest yield</option></select></label>
       <button className="clear-filters" onClick={()=>setFilters(initialFilters)}>Clear all</button>
       <button type="button" className="button mobile-filter-apply" onClick={()=>setFiltersOpen(false)}>Show {list.length} properties</button>
-    </div></>}
+    </div></>} */}
 
     {slider&&list.length>4&&
       <div className="property-slider-controls" aria-label="Property slider controls">
