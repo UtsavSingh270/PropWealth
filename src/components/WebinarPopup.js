@@ -3,12 +3,17 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, CalendarDays, X } from "lucide-react";
-import s from "./HomeLanding.module.css";
+import s from "./components.module.css";
 
 export default function WebinarPopup({ webinar }) {
   const [open, setOpen] = useState(false);
   useEffect(() => {
-    const timer = setTimeout(() => setOpen(true), 4500);
+    const sessionKey = "propwealth-webinar-popup-shown";
+    if (window.sessionStorage.getItem(sessionKey)) return;
+    const timer = setTimeout(() => {
+      window.sessionStorage.setItem(sessionKey, "true");
+      setOpen(true);
+    }, 4500);
     return () => clearTimeout(timer);
   }, []);
   if (!open) return null;

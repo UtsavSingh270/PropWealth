@@ -1,16 +1,16 @@
 import Link from "next/link";
 import { ArrowUpRight, Compass, Search, KeyRound, ShieldCheck, Handshake } from "lucide-react";
 import { services } from "../data/services";
-import s from "./HomeLanding.module.css";
+import s from "./components.module.css";
 const icons = { Compass, Search, KeyRound, ShieldCheck, Handshake };
 export default function ServiceCards() {
-  return <div className={s.serviceGrid}>{services.map((service,i) => {
+  return <div className={s.serviceGrid}>{services.map(service => {
     const Icon = icons[service.icon];
-    return <article className={s.service} key={service.slug}>
-      <div className={s.cardTop}><Icon size={28}/><span>0{i+1}</span></div>
-      <h3><Link href={"/services/"+service.slug}>{service.title}</Link></h3>
+    const [firstLine, secondLine] = service.cardTitleLines || [service.title, ""];
+    return <Link className={s.service} href={"/services/"+service.slug} key={service.slug}>
+      <div className={s.serviceTitleRow}><h3><span>{firstLine}</span><span>{secondLine}</span></h3></div>
       <p>{service.description}</p>
-      <Link className={s.textLink} href={"/services/"+service.slug}>Explore service <ArrowUpRight size={18}/></Link>
-    </article>;
+      <span className={s.textLink}>Explore service <ArrowUpRight size={18}/></span><span className={s.cornerMotion} aria-hidden="true"><Icon/></span>
+    </Link>;
   })}</div>;
 }

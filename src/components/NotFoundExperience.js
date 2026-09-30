@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { ArrowLeft,Home } from "lucide-react";
+import { Home } from "lucide-react";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 export default function NotFoundExperience(){
@@ -12,7 +12,7 @@ export default function NotFoundExperience(){
         <span className="eyebrow">Page not found</span>
         <h1 id="not-found-title">This property path doesn’t exist.</h1>
         <p>The page may have moved, the link may be outdated, or the address may have been entered incorrectly.</p>
-        <div className="not-found-actions"><Link className="button" href="/"><Home/>Return home</Link><Link className="button secondary" href="/properties"><ArrowLeft/>Explore properties</Link></div>
+        <div className="not-found-actions"><Link className="button" href="/"><Home/>Return home</Link><Link className="button secondary" href="/success-stories">See client results</Link></div>
       </div>
     </div>
   </section>;

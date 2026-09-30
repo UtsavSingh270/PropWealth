@@ -4,7 +4,7 @@ import { ArrowRight, Check } from "lucide-react";
 import { services } from "../../../data/services";
 import PageHero from "../../../components/PageHero";
 import HomeProcessTimeline from "../../../components/HomeProcessTimeline";
-import s from "../../../components/HomeLanding.module.css";
+import s from "../../../components/components.module.css";
 export function generateStaticParams(){return services.map(({slug})=>({slug}))}
 export async function generateMetadata({params}){const {slug}=await params;const service=services.find(s=>s.slug===slug);return {title:service?.title||"Service not found",description:service?.description}}
 export default async function ServiceDetail({params}){

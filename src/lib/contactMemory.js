@@ -1,0 +1,2 @@
+export const hasSharedContact=()=>typeof window!=="undefined"&&Boolean(localStorage.getItem("propwealth-contact-complete")||localStorage.getItem("propwealth-contact")||localStorage.getItem("propwealth-lead-popup-complete"));
+export const rememberContact=details=>{if(typeof window==="undefined")return;localStorage.setItem("propwealth-contact",JSON.stringify(details));localStorage.setItem("propwealth-contact-complete","1")};

@@ -9,7 +9,11 @@ export async function getProperties() {
       updateOne: { filter: { slug: property.slug }, update: { $setOnInsert: property }, upsert: true }
     })));
     const stored=await Property.find({}).sort({ createdAt: 1 }).lean();
-    return JSON.parse(JSON.stringify(stored.filter(item=>item.visible!==false).map(item=>({...fallbackProperties.find(seed=>seed.slug===item.slug),...item}))));
+    return JSON.parse(JSON.stringify(stored.filter(item=>item.visible!==false).map(item=>{
+      const fallback = fallbackProperties.find(seed=>seed.slug===item.slug) || {};
+      const merged = {...fallback,...item};
+      return fallback.status === "Sold Out" && !Number(merged.currentValue) ? {...merged,purchasePrice:fallback.purchasePrice,currentValue:fallback.currentValue,profit:fallback.profit,equityGrowth:fallback.equityGrowth,purchaseDate:fallback.purchaseDate} : merged;
+    })));
   } catch (error) {
     console.warn("Using local property seed data:", error.message);
     return fallbackProperties;

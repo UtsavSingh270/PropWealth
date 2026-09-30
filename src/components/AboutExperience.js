@@ -2,7 +2,7 @@
 import { useEffect,useRef } from "react";
 import Image from "next/image";
 import { BarChart3,HeartHandshake,SearchCheck,ShieldCheck } from "lucide-react";
-import styles from "./AboutExperience.module.css";
+import styles from "./components.module.css";
 
 const base="https://propwealth.com.au/wp-content/uploads/";
 const journey=[

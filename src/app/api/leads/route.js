@@ -10,8 +10,17 @@ export async function POST(request){
     const body=await request.json();
     const {name,email,phone,message="",action,propertySlug,propertyTitle,consent,website,budget,timeframe,experience,goal,appointmentDate,source="website"}=body;
     if(website) return Response.json({ok:true});
-    if(!name?.trim()||!email?.trim()||!phone?.trim()||!propertySlug||!propertyTitle||!consent||!["booking","strategy"].includes(action)) return Response.json({error:"Please complete all required fields."},{status:400});
+    if(!email?.trim()||!consent) return Response.json({error:"Please complete all required fields."},{status:400});
     if(!/^\S+@\S+\.\S+$/.test(email)) return Response.json({error:"Please enter a valid email address."},{status:400});
+    if(action==="newsletter"){
+      await connectDB();
+      const normalizedEmail=email.trim().toLowerCase();
+      const duplicate=await Lead.exists({action:"newsletter",email:normalizedEmail});
+      if(duplicate)return Response.json({error:"This email is already subscribed."},{status:409});
+      const lead=await Lead.create({name:"Newsletter subscriber",email:normalizedEmail,action:"newsletter",consent:true,source:"newsletter"});
+      return Response.json({ok:true,id:lead._id},{status:201});
+    }
+    if(!name?.trim()||!phone?.trim()||!propertySlug||!propertyTitle||!["booking","strategy","download"].includes(action)) return Response.json({error:"Please complete all required fields."},{status:400});
     if(!/^\+61[2-9]\d{8}$/.test(phone.replace(/[\s()-]/g,""))) return Response.json({error:"Please enter a valid Australian phone number."},{status:400});
     await connectDB();
     if(source==="website-popup"){

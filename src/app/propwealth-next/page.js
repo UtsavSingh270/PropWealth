@@ -9,7 +9,11 @@ const features=[
 
 export const metadata={title:"PropWealth Next",description:"Data-driven insights, suburb-specific reports and expert property investment consultation from PropWealth Next."};
 
-export default function PropWealthNext(){return <>
+export default async function PropWealthNext({searchParams}){
+  const params = await searchParams;
+  const suburb = typeof params?.suburb === "string" ? params.suburb.trim() : "";
+  const locationExplorerUrl = `https://propwealth.com.au/propwealth-next-locations/${suburb ? `?suburb=${encodeURIComponent(suburb)}&search=${encodeURIComponent(suburb)}&q=${encodeURIComponent(suburb)}` : ""}`;
+  return <>
   <section className="next-hero">
     <div className="shell next-hero-grid">
       <div>
@@ -30,6 +34,6 @@ export default function PropWealthNext(){return <>
 
   <section className="section soft"><div className="shell"><div className="section-head"><div><span className="eyebrow">Research and guidance</span><h2>Insight made useful.</h2></div><p>Professional context around the locations and reports you are considering.</p></div><div className="next-feature-grid">{features.map(([Icon,title,text])=><article key={title}><Icon/><div><h3>{title}</h3><p>{text}</p></div></article>)}</div></div></section>
 
-  <section className="section next-locations-section" id="locations"><div className="shell"><div className="section-head"><div><span className="eyebrow">Location explorer</span><h2>Analyse suburbs and explore reports.</h2></div><p>Use the embedded PropWealth Next location experience below.</p></div><div className="locations-embed"><div className="embed-toolbar"><span><i/> PropWealth Next Locations</span><a href="https://propwealth.com.au/propwealth-next-locations/" target="_blank" rel="noreferrer">Open in a new tab <ArrowRight/></a></div><iframe src="https://propwealth.com.au/propwealth-next-locations/" width="100%" height="920" loading="lazy" title="PropWealth Next suburb locations and reports"/></div></div></section>
+  <section className="section next-locations-section" id="locations"><div className="shell"><div className="section-head"><div><span className="eyebrow">Location explorer</span><h2>Analyse suburbs and explore reports.</h2></div><p>{suburb ? `Showing the location explorer for ${suburb}.` : "Use the embedded PropWealth Next location experience below."}</p></div><div className="locations-embed"><div className="embed-toolbar"><span><i/> PropWealth Next Locations{suburb ? ` · ${suburb}` : ""}</span><a href={locationExplorerUrl} target="_blank" rel="noreferrer">Open in a new tab <ArrowRight/></a></div><iframe src={locationExplorerUrl} width="100%" height="920" loading="lazy" title="PropWealth Next suburb locations and reports"/></div></div></section>
 
   </>}

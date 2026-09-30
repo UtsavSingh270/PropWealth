@@ -11,19 +11,19 @@ export default function Footer() {
       </div>
       <div className="footer-explore">
         <h3>Explore</h3>
-        <Link href="/success-stories">Client results</Link>
-        <Link href="/services">Services</Link>
-        <Link href="/process">Our process</Link>
+        <Link href="/services">Our Services</Link>
+        <Link href="/success-stories">Success Stories</Link>
+        <Link href="/process">About Us</Link>
+        {/* <Link href="/resources">Resources</Link> */}
         <Link href="/propwealth-next">PropWealth NEXT</Link>
-        <Link href="/success-stories">Success stories</Link>
+        <Link href="/contact">Contact</Link>
       </div>
       <div className="footer-company">
-        <h3>Company</h3>
-        <Link href="/about">About</Link>
-        <Link href="/blog">Blogs</Link>
-        <Link href="/resources">Resources</Link>
-        <Link href="/faq">FAQ</Link>
-        <Link href="/contact">Contact</Link>
+        <h3>Resources</h3>
+        <Link href="/about">Blogs & Insights</Link>
+        <Link href="/webinars">Webinars & Podcasts</Link>
+        <Link href="/resources">Downloadable Resources</Link>
+        <Link href="/faq">Negative Gearing and CGT Impact Calculator</Link>
       </div>
       <div className="footer-contact">
         <h3>Get in touch</h3>
@@ -43,5 +43,5 @@ export default function Footer() {
         <Link href="/disclaimer">Disclaimer</Link>
       </div>
     </div>
-  </footer>;
+  </footer>
 }

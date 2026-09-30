@@ -1,0 +1,2 @@
+import { redirect } from "next/navigation";import Link from "next/link";import { ArrowLeft } from "lucide-react";import { getAdminSession } from "../../../lib/adminAuth";import DownloadableManager from "../../../components/DownloadableManager";
+export const dynamic="force-dynamic";export default async function Page(){if(!await getAdminSession())redirect("/admin/login");return <main className="admin-review-page"><div className="shell"><Link className="admin-review-back" href="/admin"><ArrowLeft size={16}/> Back to dashboard</Link><DownloadableManager/></div></main>}

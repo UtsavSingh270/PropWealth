@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import s from "./HomeLanding.module.css";
+import s from "./components.module.css";
 
 const metrics = [[500, "$", "M+", "Value of Properties Acquired"], [800, "", "+", "Total Deals Completed"], [31, "", "%", "Equity Growth (in 12 Months)"]];
 

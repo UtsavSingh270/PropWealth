@@ -24,5 +24,10 @@ const seed = [
 
 export const properties = seed.map(([slug,title,suburb,state,category,status,price,beds,baths,cars,area,yieldRate,growth], index) => {
   const images = [gallery[index % gallery.length], gallery[(index + 2) % gallery.length], gallery[(index + 4) % gallery.length]];
-  return { slug,title,suburb,state,category,status,price,beds,baths,cars,area,yield:yieldRate,growth,images,image:images[0],featured:index<4,description:`A carefully selected ${beds}-bedroom ${category.toLowerCase()} in ${suburb}, positioned for investors seeking ${growth.toLowerCase()} fundamentals. The opportunity has been assessed for local demand, liveability, rental appeal and long-term market depth.` };
+  const outcomes = {
+    "newcastle-coastal-unit": { purchasePrice: 710000, currentValue: 900000, profit: 190000, equityGrowth: 26.8, purchaseDate: "2024-02-15" },
+    "perth-metro-villa": { purchasePrice: 549000, currentValue: 690000, profit: 141000, equityGrowth: 25.7, purchaseDate: "2024-04-22" },
+    "geelong-renovated-cottage": { purchasePrice: 810000, currentValue: 1020000, profit: 210000, equityGrowth: 25.9, purchaseDate: "2023-11-08" }
+  };
+  return { slug,title,suburb,state,category,status,price,beds,baths,cars,area,yield:yieldRate,growth,images,image:images[0],featured:index<4,description:`A carefully selected ${beds}-bedroom ${category.toLowerCase()} in ${suburb}, positioned for investors seeking ${growth.toLowerCase()} fundamentals. The opportunity has been assessed for local demand, liveability, rental appeal and long-term market depth.`, ...(outcomes[slug] || {}) };
 });

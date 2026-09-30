@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Check } from "lucide-react";
+import { rememberContact } from "../lib/contactMemory";
 
 const initial={name:"",email:"",phone:"",budget:"",message:"",website:""};
 
@@ -16,7 +17,7 @@ export default function ConsultationForm({property=null}){
     setState({sending:true,message:""});
     const response=await fetch("/api/leads",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({...form,phone:`+61${form.phone}`,consent:true,action:property?"booking":"strategy",propertySlug:property?.slug||"general-consultation",propertyTitle:property?.title||"General contact enquiry"})});
     const data=await response.json();
-    setState({sending:false,message:response.ok?"Thanks—your message is with our team.":data.error});
+    if(response.ok)rememberContact({name:form.name,email:form.email,phone:`+61${form.phone}`});setState({sending:false,message:response.ok?"Thanks—your message is with our team.":data.error});
   };
   if(state.message.startsWith("Thanks"))return <div className="success-message"><span><Check/></span><h2>Message received</h2><p>{state.message}</p></div>;
   return <form className="form qualification-form contact-simple-form" onSubmit={submit}>
