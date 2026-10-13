@@ -9,9 +9,28 @@ export default function HomeHero() {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const timer = window.setTimeout(() => setReady(true), reducedMotion ? 0 : 1750);
-    return () => window.clearTimeout(timer);
+    const sessionKey = "propwealth-home-intro-seen";
+    let animationFrame;
+    let timer;
+    const reveal = () => {
+      animationFrame = window.requestAnimationFrame(() => setReady(true));
+    };
+    try {
+      if (window.sessionStorage.getItem(sessionKey)) {
+        reveal();
+      } else {
+        window.sessionStorage.setItem(sessionKey, "true");
+        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        timer = window.setTimeout(reveal, reducedMotion ? 0 : 1750);
+      }
+    } catch {
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      timer = window.setTimeout(reveal, reducedMotion ? 0 : 1750);
+    }
+    return () => {
+      if (timer) window.clearTimeout(timer);
+      if (animationFrame) window.cancelAnimationFrame(animationFrame);
+    };
   }, []);
 
   return <section className={`${s.hero} ${s.heroLanding} ${ready ? s.heroReady : ""}`} aria-label="Property investing with PropWealth">

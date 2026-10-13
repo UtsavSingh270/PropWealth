@@ -19,9 +19,9 @@ const values=[
   [BarChart3,"Research & data analytics","Research and analytics drive our search for opportunities that fit your strategy."],
 ];
 const founders=[
-  ["Julius Dabre","Co-Founder","Julius-1-1536x1920.png"],
-  ["Parag Dixit","Director, Strategy & Finance","Parag-sir-1-1536x1920.png"],
-  ["Mudit Khandelwal","Director, Product & Customer Experience","Mudit-sir-1-1536x1920.png"],
+  ["Julius Dabre","Co-Founder at PropWealth","Julius-1-1536x1920.png"],
+  ["Parag Dixit","Founder at Nfinity Financials & PropWealth","Parag-sir-1-1536x1920.png"],
+  ["Mudit Khandelwal","Director Product and Customer Experiences at PropWealth","Mudit-sir-1-1536x1920.png"],
 ];
 const members=[
   ["Abhinav Gupta","Buyer Agent","Abhinav combines more than 14 years of corporate IT experience with firsthand property investment knowledge and licensed real estate expertise. His practical insight helps clients navigate property decisions with clarity.","DSC6886-1920x1920.png"],
