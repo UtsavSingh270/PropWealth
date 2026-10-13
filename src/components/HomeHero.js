@@ -52,7 +52,13 @@ export default function HomeHero() {
           </div>
           <div className={s.heroDashboardBottom}><div><small>FROM STRATEGY TO PROPERTY</small><strong>Every next move needs a reason.</strong></div><BarChart3 size={21} /></div>
         </div>
-        <div className={s.heroFloatingGoal}><span><Target size={15} /></span><div><small>YOUR BRIEF</small><strong>Build long-term equity</strong></div><CheckCircle2 size={17} /></div>
+        {/* <div className={s.heroFloatingGoal}><span>
+          <Target size={15} /></span>
+        <div><small>YOUR BRIEF</small>
+        <strong>Build long-term equity</strong>
+        </div>
+        <CheckCircle2 size={17} />
+        </div> */}
         <div className={s.heroFloatingProof}><span>01</span><div><strong>Research first</strong><small>PropWealth Next adds market context.</small></div></div>
       </div>
     </div>
