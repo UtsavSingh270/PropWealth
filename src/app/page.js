@@ -47,7 +47,7 @@ export default async function Home() {
     </div></section>
     <section className={s.section}><div className={s.wrap}>
       <div className={s.differenceFrame}>
-        <div className={s.differenceLead}><span className={s.kicker}>What makes us different</span><h2>Every Purchase has a <em>Purpose in Your Plan.</em></h2><p>We bring strategy, property research and acquisition support together, so the next property has a clear job to do in your wider journey.</p><Link href="/about/who-we-are" className={s.textLink}>How we work <ArrowUpRight size={18} /></Link></div>
+        <div className={s.differenceLead}><span className={s.kicker}>What makes us different</span><h2>Every Purchase has a <em>Purpose in Your Plan.</em></h2><p>We bring strategy, property research and acquisition support together, so the next property has a clear job to do in your wider journey.</p><Link href="/about" className={s.textLink}>How we work <ArrowUpRight size={18} /></Link></div>
         <div className={s.differencePillars}>{[
           [Target, "Start with your position", "We clarify your income, equity, timing and goals before any property search begins.", "A plan for the role of your next purchase."],
           [BarChart3, "Use PropWealth Next", "Suburb intelligence, market movement and comparable research add useful context to every decision.", "Data made practical for your brief."],

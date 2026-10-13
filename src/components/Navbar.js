@@ -50,7 +50,7 @@ function Navigation({path}) {
       <div id="main-navigation" className={s.links + (open ? " "+s.open : "")}>
         {group("services")}
         <Link href="/success-stories" onClick={close} aria-current={path.startsWith("/success-stories") ? "page" : undefined}>Success Stories</Link>
-        {group("about")}{group("resources")}
+        <Link href="/about" onClick={close} aria-current={path==="/about" ? "page" : undefined}>About Us</Link>{group("resources")}
         <Link href="/contact" onClick={close} aria-current={path==="/contact" ? "page" : undefined}>Contact</Link>
         <div className={s.mobileActions}><Link href="/propwealth-next" onClick={close}>PropWealth Next <ArrowUpRight size={15}/></Link><Link className={s.cta} href="/contact" onClick={close}>Book Your Free Call </Link></div>
       </div>

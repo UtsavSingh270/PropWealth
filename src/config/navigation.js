@@ -1,11 +1,4 @@
 export const navigationGroups = {
-  about: {
-    label: "About Us",
-    href: "/about",
-    links: [
-      ["Who We Are", "/about/who-we-are"],
-    ],
-  },
   services: {
     label: "Services",
     href: "/services",
