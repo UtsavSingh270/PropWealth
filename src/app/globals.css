@@ -9872,6 +9872,26 @@ body:has(.not-found-page) {
   }
 }
 
+/* Modern public-site foundation: shared hierarchy, spacing and conversion surfaces. */
+:root{--font-display:var(--font-poppins),Arial,sans-serif;--content-max:1280px;--page-gutter:clamp(20px,4vw,64px);--section-space:clamp(64px,8vw,116px);--sales-ink:#1c1720;--sales-copy:#6e6470;--sales-line:#ebe4e7;--sales-soft:#fbf8f9;--sales-accent:#e83f78}
+body,button,input,select,textarea{font-family:var(--font-poppins),Arial,sans-serif!important}
+:where(h1,h2,h3,h4,h5,h6){font-family:var(--font-poppins),Arial,sans-serif!important;font-style:normal;letter-spacing:-.045em}
+:where(.eyebrow,.kicker,.chip,.tag,.section-label,.label,.resource-type){font-family:var(--font-poppins),Arial,sans-serif!important;font-style:normal!important;text-transform:uppercase;letter-spacing:.12em}
+.shell,.wrap{width:min(var(--content-max),calc(100% - (var(--page-gutter) * 2)))}
+.section,.softSection,.processSection{padding-block:var(--section-space)}
+.section-head,.heading{margin-bottom:clamp(26px,3.5vw,48px)}
+.section-head h2,.heading h2{max-width:920px;font-size:clamp(2.15rem,4.1vw,4.3rem);line-height:1.02}
+.section-head p,.heading p{max-width:720px;color:var(--sales-copy);font-size:clamp(.95rem,1.2vw,1.1rem);line-height:1.75}
+.page-hero{position:relative;overflow:hidden;padding:clamp(78px,10vw,138px) 0 clamp(60px,8vw,105px);background:radial-gradient(circle at 84% 0,rgba(232,63,120,.11),transparent 24%),var(--sales-soft);border-bottom:1px solid var(--sales-line)}
+.page-hero:before,.page-hero:after{display:none}.page-hero h1{max-width:1120px;font-size:clamp(2.8rem,6.2vw,6.1rem);line-height:.98}.page-hero p{max-width:760px}
+.button,.primary,.cta{border-radius:10px!important;box-shadow:none!important;font-family:var(--font-poppins),Arial,sans-serif!important;font-weight:800}.button:hover,.primary:hover,.cta:hover{transform:translateY(-2px)}
+.card,.property-card,.blog-card,.resource-card,.resource-public-card,.contact-form-card,.calculator-inputs,.calculator-results,.faq,.post-faqs details{border:1px solid var(--sales-line)!important;border-radius:18px!important;box-shadow:0 12px 34px rgba(35,20,29,.05)!important}
+.card:hover,.property-card:hover,.blog-card:hover,.resource-card:hover,.resource-public-card:hover{border-color:rgba(232,63,120,.42)!important;box-shadow:0 18px 42px rgba(35,20,29,.09)!important}
+.soft,.softSection{background:var(--sales-soft)}
+@media(max-width:700px){:root{--page-gutter:16px;--section-space:46px}.page-hero{padding:66px 0 54px}.page-hero h1{font-size:clamp(2.35rem,11vw,3.4rem)}.section-head h2,.heading h2{font-size:clamp(2rem,9.4vw,3rem)}.section-head p,.heading p{font-size:14px}.button,.primary,.cta{min-height:46px}}
+@media(min-width:701px) and (max-width:1439px){:root{--section-space:30px}.section{padding-block:30px!important}}
+@media(min-width:1440px){:root{--section-space:40px}.section{padding-block:40px!important}}
+
 /* Compact property detail dialog */
 @media (min-width: 621px) {
   .modal-backdrop { padding: 20px; }

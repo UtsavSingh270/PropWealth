@@ -13,15 +13,8 @@ export default function Navbar() {
 function Navigation({path}) {
   const [open,setOpen] = useState(false);
   const [expanded,setExpanded] = useState("");
-  const [scrolled,setScrolled] = useState(false);
   const header = useRef(null), toggle = useRef(null);
   const close = () => { setOpen(false); setExpanded(""); };
-  useEffect(() => {
-    const updateScroll = () => setScrolled(window.scrollY > 18);
-    updateScroll();
-    window.addEventListener("scroll", updateScroll, { passive: true });
-    return () => window.removeEventListener("scroll", updateScroll);
-  },[]);
   useEffect(() => {
     const dismiss = event => {
       if (!header.current?.contains(event.target)) { setOpen(false); setExpanded(""); }
@@ -51,7 +44,7 @@ function Navigation({path}) {
     <div id={"nav-"+key} className={s.dropdown}>{item.links.map(([label,url]) => <Link key={url} href={url} onClick={close} aria-current={path===url ? "page" : undefined}>{label}<ArrowUpRight size={14}/></Link>)}</div>
   </div>;
   };
-  return <header ref={header} className={`${s.header} ${path === "/" ? s.homeHeader : ""} ${scrolled ? s.scrolled : ""}`} onBlur={event => { if(!event.currentTarget.contains(event.relatedTarget)) close(); }}>
+  return <header ref={header} className={s.header} onBlur={event => { if(!event.currentTarget.contains(event.relatedTarget)) close(); }}>
     <nav className={s.inner} aria-label="Main navigation">
       <Link href="/" className={s.brand} aria-label="PropWealth home" onClick={close}><Logo compact/></Link>
       <div id="main-navigation" className={s.links + (open ? " "+s.open : "")}>
