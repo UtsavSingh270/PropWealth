@@ -4,10 +4,6 @@ export const navigationGroups = {
     href: "/about",
     links: [
       ["Who We Are", "/about/who-we-are"],
-      ["Who We Guide", "/about/who-we-guide"],
-      ["Rentvestors", "/about/who-we-guide/rentvestors"],
-      ["Portfolio Investors", "/about/who-we-guide/portfolio-investors"],
-      ["Large Portfolio Investors", "/about/who-we-guide/large-portfolio-investors"],
     ],
   },
   services: {
