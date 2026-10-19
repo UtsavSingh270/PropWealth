@@ -1,6 +1,19 @@
 import { connectDB } from "./mongodb";
 import ClientReview from "../models/ClientReview";
 import { clientReviews } from "../data/clientReviews";
+import GoogleReviewSummary from "../models/GoogleReviewSummary";
+
+export async function getGoogleReviewSummary() {
+  const fallback = { rating: 5, reviewCount: 232 };
+  try {
+    await connectDB();
+    const summary = await GoogleReviewSummary.findOne().sort({ createdAt: 1 }).lean();
+    return summary ? { rating: summary.rating, reviewCount: summary.reviewCount } : fallback;
+  } catch (error) {
+    console.warn("Google review summary unavailable:", error.message);
+    return fallback;
+  }
+}
 
 export async function getClientReviews(limit = 10) {
   try {

@@ -48,13 +48,15 @@ function Navigation({path}) {
     <nav className={s.inner} aria-label="Main navigation">
       <Link href="/" className={s.brand} aria-label="PropWealth home" onClick={close}><Logo compact/></Link>
       <div id="main-navigation" className={s.links + (open ? " "+s.open : "")}>
-        {group("services")}
         <Link href="/success-stories" onClick={close} aria-current={path.startsWith("/success-stories") ? "page" : undefined}>Success Stories</Link>
-        <Link href="/about" onClick={close} aria-current={path==="/about" ? "page" : undefined}>About Us</Link>{group("resources")}
-        <Link href="/contact" onClick={close} aria-current={path==="/contact" ? "page" : undefined}>Contact</Link>
-        <div className={s.mobileActions}><Link href="/propwealth-next" onClick={close}>PropWealth Next <ArrowUpRight size={15}/></Link><Link className={s.cta} href="/contact" onClick={close}>Book Your Free Call </Link></div>
+        <Link href="/about" onClick={close} aria-current={path==="/about" ? "page" : undefined}>About Us</Link>
+        {group("services")}
+        {group("resources")}
+        {/* <Link href="/contact" onClick={close} aria-current={path==="/contact" ? "page" : undefined}>Contact</Link> */}
+        <div className={s.mobileActions}><Link href="/propwealth-next" onClick={close}>PropWealth Next <ArrowUpRight size={15}/></Link>
+        <Link className={s.cta} href="/contact" onClick={close}>Contact Us</Link></div>
       </div>
-      <div className={s.actions}><Link className={s.next} href="/propwealth-next">PropWealth Next <ArrowUpRight size={14}/></Link><Link className={s.cta} href="/contact">Book Your Free Call </Link><button ref={toggle} className={s.toggle} type="button" aria-label={open ? "Close navigation" : "Open navigation"} aria-expanded={open} aria-controls="main-navigation" onClick={() => { setOpen(!open); setExpanded(""); }}>{open ? <X/> : <Menu/>}</button></div>
+      <div className={s.actions}><Link className={s.next} href="/propwealth-next">PropWealth Next <ArrowUpRight size={14}/></Link><Link className={s.cta} href="/contact">Contact Us</Link><button ref={toggle} className={s.toggle} type="button" aria-label={open ? "Close navigation" : "Open navigation"} aria-expanded={open} aria-controls="main-navigation" onClick={() => { setOpen(!open); setExpanded(""); }}>{open ? <X/> : <Menu/>}</button></div>
     </nav>
   </header>;
 }

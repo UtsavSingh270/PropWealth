@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, ArrowUpRight, BarChart3, Compass, ShieldCheck, Target } from "lucide-react";
 import { getProperties } from "../lib/properties";
 import { getResourceEntries } from "../lib/resourceEntries";
+import { getGoogleReviewSummary } from "../lib/clientReviews";
 import PropertyExplorer from "../components/PropertyExplorer";
 import HomeHero from "../components/HomeHero";
 import WebinarPopup from "../components/WebinarPopup";
@@ -21,13 +22,13 @@ async function upcomingWebinars() {
 }
 
 export default async function Home() {
-  const [properties, webinars] = await Promise.all([getProperties(), upcomingWebinars()]);
+  const [properties, webinars, reviewSummary] = await Promise.all([getProperties(), upcomingWebinars(), getGoogleReviewSummary()]);
   const featured = properties.filter(property => property.visible !== false && property.status !== "Sold Out" && property.featured).slice(0, 4);
   const sold = properties.filter(property => property.visible !== false && property.status === "Sold Out").slice(0, 3);
   const webinar = webinars.sort((a, b) => Date.parse(a.eventDate) - Date.parse(b.eventDate))[0];
 
   return <div className={s.home}>
-    <HomeHero />
+    <HomeHero reviewSummary={reviewSummary} />
     <section className={s.proofSection} aria-label="PropWealth results at a glance"><div className={s.wrap}><AnimatedMetrics /></div></section>
     <section id="success" className={s.section}>
       <div className={s.wrap}>

@@ -2,11 +2,14 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { ArrowRight, ArrowUpRight, BarChart3, CheckCircle2, MapPinned, Target } from "lucide-react";
+import { ArrowUpRight, CheckCircle2, Compass, MapPinned, SearchCheck } from "lucide-react";
 import s from "./components.module.css";
 
-export default function HomeHero() {
+export default function HomeHero({ reviewSummary }) {
   const [ready, setReady] = useState(false);
+  const rating = Math.min(5, Math.max(0, Number(reviewSummary?.rating ?? 5)));
+  const fullStars = Math.floor(rating);
+  const hasHalfStar = rating - fullStars >= 0.5;
 
   useEffect(() => {
     const sessionKey = "propwealth-home-intro-seen";
@@ -40,14 +43,14 @@ export default function HomeHero() {
       <strong>Make your next move<br />make more sense.</strong>
       <div className={s.heroIntroSteps}><span>STRATEGY</span><i /><span>RESEARCH</span><i /><span>PROPERTY</span></div>
     </div>
-    <div className={s.heroAura} aria-hidden="true"><i /><i /><i /></div>
+    <div className={s.heroAura} aria-hidden="true"><i /><i /></div>
     <div className={`${s.wrap} ${s.heroContent}`}>
       <div className={s.heroCopy}>
         <span className={s.kicker}>PROPWEALTH BUYERS AGENCY</span>
-        <h1>Build the next chapter<br />of your <em>property story.</em></h1>
+        <h1>Build the Next<br />Chapter of Your<br /><em>Property Story.</em></h1>
         <p>Start with a clear strategy, use deeper suburb research and choose a property that has a defined place in your long-term plan.</p>
         <div className={s.heroActions}>
-          <Link href="/contact" className={s.primary}>Book Your Free Call <ArrowRight size={18} /></Link>
+          <Link href="/contact" className={s.primary}>Book Your Free Call <ArrowUpRight size={17} /></Link>
           <Link href="/propwealth-next" className={s.heroSecondary}>Explore PropWealth Next <ArrowUpRight size={17} /></Link>
         </div>
         <div className={s.heroTrust}><span><CheckCircle2 size={16} /> Strategy-led advice</span><span><CheckCircle2 size={16} /> Research before recommendations</span></div>
@@ -55,7 +58,7 @@ export default function HomeHero() {
 
       <div className={s.heroVisual} aria-label="PropWealth Next research preview">
         <div className={s.heroDashboard}>
-          <div className={s.heroDashboardTop}><span>PROPWEALTH <b>NEXT</b></span><span className={s.heroStatus}><i /> LIVE RESEARCH</span></div>
+          <div className={s.heroDashboardTop}><span className={s.heroDashboardBrand}><i /> PROPWEALTH <b>NEXT</b></span></div>
           <div className={s.heroDashboardBody}>
             <div className={s.heroDashboardTitle}><span><MapPinned size={16} /> LOCATION INTELLIGENCE</span><strong>Understand the market<br />behind the address.</strong></div>
             <div className={s.heroChart}>
@@ -69,16 +72,22 @@ export default function HomeHero() {
               <div className={s.heroChartTags}><span>House trends</span><span>Rent trends</span><span>Demand</span></div>
             </div>
           </div>
-          <div className={s.heroDashboardBottom}><div><small>FROM STRATEGY TO PROPERTY</small><strong>Every next move needs a reason.</strong></div><BarChart3 size={21} /></div>
+          <div className={s.heroDashboardBottom}><div><small>FROM STRATEGY TO PROPERTY</small><strong>Every next move needs a reason.</strong></div><Compass size={21} /></div>
         </div>
-        {/* <div className={s.heroFloatingGoal}><span>
-          <Target size={15} /></span>
-        <div><small>YOUR BRIEF</small>
-        <strong>Build long-term equity</strong>
+        <div className={s.heroGoogleFloating}>
+          <span className={s.heroGoogleFloatingMark}>G</span>
+          <div>
+            <strong>Trusted by investors</strong>
+            <span className={s.heroGoogleFloatingMeta}>
+              {/* <span className={s.heroGoogleFloatingStars}>{[0,1,2,3,4].map(index => <i className={index < fullStars ? s.starFull : index === fullStars && hasHalfStar ? s.starHalf : s.starEmpty} key={index}>★</i>)} <b>{String(reviewSummary?.rating ?? 5)} / 5</b>
+              </span> */}
+              <small>{reviewSummary?.reviewCount ?? 232} Google reviews</small>
+              <span className={s.heroGoogleFloatingStars}>{[0,1,2,3,4].map(index => <i className={index < fullStars ? s.starFull : index === fullStars && hasHalfStar ? s.starHalf : s.starEmpty} key={index}>★</i>)} <b>{String(reviewSummary?.rating ?? 5)} / 5</b>
+              </span>
+            </span>
+          </div>
         </div>
-        <CheckCircle2 size={17} />
-        </div> */}
-        <div className={s.heroFloatingProof}><span>01</span><div><strong>Research first</strong><small>PropWealth Next adds market context.</small></div></div>
+        <div className={s.heroFloatingProof}><span className={s.heroFloatingProofIcon}><SearchCheck size={15} /></span><div><strong>Research first</strong><small>PropWealth Next adds market context.</small></div></div>
       </div>
     </div>
   </section>;

@@ -9872,6 +9872,33 @@ body:has(.not-found-page) {
   }
 }
 
+.review-summary-editor {
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr) minmax(340px, 1.15fr) auto;
+  align-items: center;
+  gap: 28px;
+  margin: 24px 0 34px;
+  padding: 24px 26px;
+  border: 1px solid #eedce5;
+  border-radius: 20px;
+  background: linear-gradient(120deg, #fff8fb, #fff 72%);
+  box-shadow: 0 12px 30px rgba(73, 27, 49, .06);
+}
+.review-summary-editor h2 { margin: 6px 0 6px; font-size: clamp(20px, 2vw, 27px); letter-spacing: -.04em; }
+.review-summary-copy p { max-width: 330px; margin: 0; color: #76636d; font-size: 13px; line-height: 1.55; }
+.review-summary-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.review-summary-editor label { display: grid; gap: 7px; color: #4f3e48; font-size: 12px; font-weight: 800; }
+.review-summary-editor label > span { display: flex; align-items: center; gap: 6px; }
+.review-summary-editor input, .review-summary-editor select { width: 100%; min-height: 44px; padding: 10px 12px; border: 1px solid #dfcbd5; border-radius: 10px; outline: none; background: #fff; color: #281b23; font: inherit; transition: border-color .2s ease, box-shadow .2s ease; }
+.review-summary-editor input:focus, .review-summary-editor select:focus { border-color: #ed5c91; box-shadow: 0 0 0 3px rgba(237, 92, 145, .13); }
+.review-rating-input { display: flex; align-items: center; gap: 8px; }
+.review-rating-input input { flex: 1; min-width: 0; }
+.review-rating-input b { color: #76636d; font-size: 13px; white-space: nowrap; }
+.review-summary-editor label small { color: #927f89; font-size: 10px; font-weight: 500; line-height: 1.35; }
+.review-summary-save { min-height: 44px; white-space: nowrap; }
+@media (max-width: 1000px) { .review-summary-editor { grid-template-columns: 1fr; gap: 18px; } .review-summary-copy p { max-width: 560px; } .review-summary-save { justify-self: start; } }
+@media (max-width: 600px) { .review-summary-editor { margin-inline: 0; padding: 18px; } .review-summary-fields { grid-template-columns: 1fr; } .review-summary-save { width: 100%; } }
+
 /* Modern public-site foundation: shared hierarchy, spacing and conversion surfaces. */
 :root{--font-display:var(--font-poppins),Arial,sans-serif;--content-max:1280px;--page-gutter:clamp(20px,4vw,64px);--section-space:clamp(64px,8vw,116px);--sales-ink:#1c1720;--sales-copy:#6e6470;--sales-line:#ebe4e7;--sales-soft:#fbf8f9;--sales-accent:#e83f78}
 body,button,input,select,textarea{font-family:var(--font-poppins),Arial,sans-serif!important}
