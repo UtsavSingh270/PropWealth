@@ -29,7 +29,12 @@ export default async function Home() {
 
   return <div className={s.home}>
     <HomeHero reviewSummary={reviewSummary} />
-    <section className={s.proofSection} aria-label="PropWealth results at a glance"><div className={s.wrap}><AnimatedMetrics /></div></section>
+    <section className={s.proofSection} aria-label="PropWealth results at a glance">
+      <div className={s.wrap}>
+        <AnimatedMetrics />
+      </div>
+    </section>
+    <ResearchBanner />
     <section id="success" className={s.section}>
       <div className={s.wrap}>
         <div className={s.heading}><div><span className={s.kicker}>PropWealth results</span><h2>Real properties. <em>Clear results.</em></h2><p>Our experience helps investors move from a clear strategy to a confident property decision.</p></div><Link className={s.textLink} href="/success-stories">See Our Success Stories <ArrowUpRight size={18} /></Link></div>
@@ -42,7 +47,7 @@ export default async function Home() {
       <ServiceCards />
     </div></section>
     <ProcessLottieStages />
-    <ResearchBanner />
+    {/* <ResearchBanner /> */}
     <section className={s.softSection}><div className={s.wrap}><div className={s.heading}><div><span className={s.kicker}>Upcoming opportunities</span><h2>Your next move <em>could start here.</em></h2></div><Link className={`${s.textLink} ${s.desktopOpportunitiesLink}`} href="/success-stories">View All Upcoming Opportunities<ArrowUpRight size={18} /></Link></div>
       {featured.length ? <><PropertyExplorer properties={featured} compact /><Link className={`${s.textLink} ${s.mobileOpportunitiesLink}`} href="/success-stories">View All Upcoming Opportunities<ArrowUpRight size={18} /></Link></> : <div className={s.empty}><h3>The right opportunity starts with your brief.</h3><p>Tell us what you’re looking for and we’ll help you explore your next move.</p><Link className={s.primary} href="/contact">Discuss your property goals <ArrowRight size={18} /></Link></div>}
     </div></section>

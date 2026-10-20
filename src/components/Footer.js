@@ -30,8 +30,9 @@ export default function Footer() {
         <div className="footer-contact-row">
           <a href="tel:+61409016393"><Phone size={15}/> 0409 016 393</a>
           <a href="mailto:info@propwealth.com.au"><Mail size={15}/> info@propwealth.com.au</a>
-          <p className="address"><MapPin size={15}/> 215/33 Lexington Dr, Bella Vista NSW 2153</p>
-          <p className="address"><MapPin size={15}/> Level 6, 30/231 North Quay, Brisbane City QLD 4000</p>
+          <p className="address"><MapPin size={15}/>Suite 215, East Wing, 33 Lexington Drive, Bella Vista NSW 2153</p>
+          <p className="address"><MapPin size={15}/>Level 6, 30/231 North Quay, Brisbane City 4000</p>
+          <p className="address"><MapPin size={15}/>212/3 Richardson Street, South Perth, WA 6151</p>
         </div>
       </div>
     </div>
